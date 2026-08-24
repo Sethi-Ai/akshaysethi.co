@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Sethi</title>
+  <meta name="description" content="Akshay Sethi — growth marketer, AI builder, writer." />
+  <meta property="og:title" content="Akshay Sethi" />
+  <meta property="og:url" content="https://akshaysethi.co" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #F5F5F0;
+      --text:    #111111;
+      --muted:   #888888;
+      --faint:   #BBBBBB;
+      --divider: #E4E4DE;
+      --orange:  #F47A1F;
+      --serif:   'Playfair Display', Georgia, serif;
+      --sans:    'Inter', system-ui, sans-serif;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0 0;
+      margin-bottom: 0;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      color: var(--text);
+    }
+
+    .nav-name span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      transition: color 0.12s;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-right {
+      font-size: 12px;
+      color: var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-divider { color: var(--divider); }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      padding: 48px 0 48px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .hero-left {}
+
+    .bio {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    .bio strong { color: var(--text); font-weight: 400; }
+
+    /* Summary bullets */
+    .summary-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 12px;
+    }
+
+    .summary {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+
+    .summary li {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .summary li::before {
+      content: '·';
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .summary a {
+      color: var(--text);
+      border-bottom: 1px solid var(--divider);
+      transition: border-color 0.12s, color 0.12s;
+    }
+
+    .summary a:hover { color: var(--orange); border-color: var(--orange); }
+
+    /* Social icons */
+    .socials {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .social-icon {
+      color: var(--faint);
+      transition: color 0.12s;
+      display: flex;
+    }
+
+    .social-icon:hover { color: var(--orange); }
+    .social-icon svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Hero photo */
+    .hero-photo {
+      position: relative;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── Bottom grid ── */
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      padding-top: 48px;
+    }
+
+    /* Section labels */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 20px;
+    }
+
+    /* ── Projects ── */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .project-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .project-info {}
+
+    .project-name {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 400;
+      transition: color 0.12s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .project-name:hover { color: var(--orange); }
+
+    .project-name svg {
+      width: 10px;
+      height: 10px;
+      fill: var(--faint);
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    /* ── Writing ── */
+    .writing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .writing-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--divider);
+      transition: color 0.12s;
+    }
+
+    .writing-item:first-child { border-top: 1px solid var(--divider); }
+
+    .writing-date {
+      font-size: 11px;
+      color: var(--faint);
+      min-width: 56px;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .writing-title {
+      font-size: 14px;
+      color: var(--text);
+      transition: color 0.12s;
+      line-height: 1.4;
+    }
+
+    .writing-item:hover .writing-title { color: var(--orange); }
+
+    /* ── Mobile ── */
+    @media (max-width: 680px) {
+      .wrap { padding: 0 20px 60px; }
+      .hero { grid-template-columns: 1fr; gap: 32px; }
+      .hero-photo { order: -1; }
+      .hero-photo img { aspect-ratio: 3/2; }
+      .bottom { grid-template-columns: 1fr; gap: 40px; }
+      .nav-right { display: none; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Nav -->
+    <nav>
+      <a class="nav-name" href="/">Akshay <span>Sethi</span></a>
+      <ul class="nav-links">
+        <li><a href="#writing">writing</a></li>
+        <li><a href="#quotes">quotes</a></li>
+        <li><a href="#photography">photography</a></li>
+        <li><a href="#posters">posters</a></li>
+        <li><a href="/connect">the work side</a></li>
+      </ul>
+      <div class="nav-right">
+        <span id="clock">—</span>
+        <span class="nav-divider">|</span>
+        <span>Gurgaon, IN</span>
+        <span id="weather">—</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+
+        <p class="bio">
+          Hello — I'm Akshay and you're exploring my small corner of the internet.
+          I use this space to share what I'm <strong>building, writing,</strong> and <strong>thinking about.</strong>
+        </p>
+
+        <p class="summary-label">Summary</p>
+        <ul class="summary">
+          <li>Co-founder of <a href="https://aicatalyst.in" target="_blank">AiCatalyst</a> — an AI studio that builds, automates, and grows</li>
+          <li>10+ years in growth — <a href="/connect">Zomato, Milkbasket, Snapdeal</a> and others</li>
+          <li>Building <a href="/links">BlendSpend, KnotJot</a> and <a href="https://promptsethi.com" target="_blank">promptsethi.com</a> on the side</li>
+          <li>Writing about AI, growth, life, and things I can't stop thinking about</li>
+          <li>Based in Gurgaon, IN</li>
+        </ul>
+
+        <!-- Socials -->
+        <div class="socials">
+          <a href="mailto:sethi.gram@gmail.com" class="social-icon" title="Email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/akshay-sethi" target="_blank" class="social-icon" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.7V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
+          </a>
+          <a href="https://instagram.com/sethi.gram" target="_blank" class="social-icon" title="@sethi.gram">
+            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </a>
+          <a href="https://instagram.com/sethi.ai" target="_blank" class="social-icon" title="@sethi.ai">
+            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </a>
+          <a href="https://threads.net/@sethi.gram" target="_blank" class="social-icon" title="Threads">
+            <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7c-.199 0-.392-.08-.534-.22a.756.756 0 0 1-.221-.534V6.8c0-.2.08-.39.221-.534a.754.754 0 0 1 .534-.22h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71c0 .414-.336.754-.75.754h-.82z"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Photo -->
+      <div class="hero-photo">
+        <img src="akshay-hero.jpg" alt="Akshay Sethi" />
+      </div>
+    </section>
+
+    <!-- Bottom: Projects + Writing -->
+    <div class="bottom">
+
+      <!-- Projects -->
+      <div>
+        <p class="section-label">Projects</p>
+        <div class="project-list">
+
+          <div class="project-item">
+            <div class="project-icon" style="background:#F47A1F;">BS</div>
+            <div class="project-info">
+              <a class="project-name" href="/links">
+                BlendSpend
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              </a>
+              <p class="project-desc">Couple expense tracking — built for two</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-icon" style="background:#111111;">KJ</div>
+            <div class="project-info">
+              <a class="project-name" href="/links">
+                KnotJot
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              </a>
+              <p class="project-desc">Couple journey &amp; vision board</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-icon" style="background:#111111;">Ai.</div>
+            <div class="project-info">
+              <a class="project-name" href="https://aicatalyst.in" target="_blank">
+                AiCatalyst
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              </a>
+              <p class="project-desc">AI Studio — Build · Automate · Grow</p>
+            </div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-icon" style="background:#F47A1F;">PS</div>
+            <div class="project-info">
+              <a class="project-name" href="https://promptsethi.com" target="_blank">
+                promptsethi.com
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              </a>
+              <p class="project-desc">Repository of prompts that matter</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Writing -->
+      <div id="writing">
+        <p class="section-label">Writing</p>
+        <ul class="writing-list">
+          <li class="writing-item">
+            <span class="writing-date">24.08.26</span>
+            <a class="writing-title" href="/writing/the-art-of-slowing-down">The Art of Slowing Down</a>
+          </li>
+          <!-- More posts appear here as you publish -->
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Live clock — Gurgaon time (IST = UTC+5:30)
+    function updateClock() {
+      const now = new Date();
+      const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+      const h = ist.getHours();
+      const m = String(ist.getMinutes()).padStart(2, '0');
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const h12 = h % 12 || 12;
+      document.getElementById('clock').textContent = `${h12}:${m} ${ampm}`;
+    }
+    updateClock();
+    setInterval(updateClock, 60000);
+
+    // Live weather — Open-Meteo, free, no API key
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4595&longitude=77.0266&current_weather=true')
+      .then(r => r.json())
+      .then(d => {
+        const temp = Math.round(d.current_weather.temperature);
+        document.getElementById('weather').textContent = `☁ ${temp}°C`;
+      })
+      .catch(() => {
+        document.getElementById('weather').textContent = '';
+      });
+  </script>
+
+</body>
+</html>
