@@ -1,4 +1,10 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/me", "dest": "/me.html" },
+    { "src": "/connect", "dest": "/index.html" },
+    { "src": "/profile", "dest": "/profile.html" },
+    { "src": "/portfolio", "dest": "/portfolio.html" }
+  ]
 }

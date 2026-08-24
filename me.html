@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Sethi</title>
+  <meta name="description" content="Akshay Sethi — everything I'm building, writing, and thinking about." />
+  <meta property="og:title" content="Akshay Sethi" />
+  <meta property="og:url" content="https://akshaysethi.co/me" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #F5F5F0;
+      --text:       #111111;
+      --muted:      #888888;
+      --faint:      #BBBBBB;
+      --divider:    #E4E4DE;
+      --orange:     #F47A1F;
+      --orange-bg:  rgba(244, 122, 31, 0.07);
+      --orange-bar: 3px solid #F47A1F;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+    }
+
+    /* ── Dark mode tokens ── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #111111;
+        --text:      #F0F0EB;
+        --muted:     #888888;
+        --faint:     #555555;
+        --divider:   #2A2A2A;
+        --orange-bg: rgba(244, 122, 31, 0.1);
+      }
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+    }
+
+    /* ── Avatar + Name row ── */
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--divider);
+      display: block;
+      transition: border-color 0.2s;
+    }
+
+    .avatar:hover {
+      border-color: var(--orange);
+    }
+
+    /* ── Header ── */
+    .name {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.4px;
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+
+    .name span { color: var(--orange); }
+
+    .bio {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .bio strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── Sections ── */
+    .section { margin-top: 36px; }
+
+    .label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 12px;
+    }
+
+    /* ── Link rows ── */
+    .links { list-style: none; }
+
+    .links li {
+      border-top: 1px solid var(--divider);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .links li:last-child {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    /* The orange left bar — hidden by default, slides in on hover */
+    .links li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--orange);
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .links li:hover::before {
+      transform: scaleY(1);
+    }
+
+    .links a,
+    .links .email-row {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0 12px 0;
+      gap: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.18s ease, padding-left 0.18s ease;
+    }
+
+    .links li:hover > a,
+    .links li:hover > .email-row {
+      background: var(--orange-bg);
+      padding-left: 14px;
+    }
+
+    .link-title {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 400;
+      transition: color 0.15s;
+    }
+
+    .link-caption {
+      font-size: 12px;
+      color: var(--faint);
+      transition: color 0.15s;
+    }
+
+    .links li:hover .link-title { color: var(--orange); }
+    .links li:hover .link-caption { color: var(--orange); opacity: 0.7; }
+
+    /* ── Email row ── */
+    .email-row {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+      gap: 3px;
+    }
+
+    .email-row .link-title { margin-bottom: 2px; }
+
+    .email-addr {
+      font-size: 12px;
+      color: var(--faint);
+      transition: color 0.15s;
+    }
+
+    .links li:hover .email-addr { color: var(--orange); opacity: 0.7; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 52px;
+      text-align: center;
+    }
+
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      opacity: 0.4;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Avatar + Name -->
+    <div class="identity">
+      <img src="dp.jpg" alt="Akshay Sethi" class="avatar" />
+      <h1 class="name">Akshay <span>Sethi</span></h1>
+    </div>
+
+    <!-- Bio -->
+    <p class="bio">
+      Hello — I'm Akshay Sethi and you've landed in my small corner of the internet.
+      I keep this page updated with all my links.<br /><br />
+      <strong>Everything I'm building, writing, and thinking about — personally and professionally.</strong>
+    </p>
+
+    <!-- READ -->
+    <section class="section">
+      <p class="label">Read</p>
+      <ul class="links">
+        <li>
+          <a href="https://akshaysethi.co">
+            <span class="link-title">Me &amp; My Life</span>
+            <span class="link-caption">Writing · Quotes I like · Photography · Music</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- WORK -->
+    <section class="section">
+      <p class="label">Work</p>
+      <ul class="links">
+        <li>
+          <a href="https://akshaysethi.co/connect">
+            <span class="link-title">Connect</span>
+            <span class="link-caption">What I'm up to work-wise, in detail</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CONNECT -->
+    <section class="section">
+      <p class="label">Connect</p>
+      <ul class="links">
+        <li>
+          <a href="https://linkedin.com/in/akshaysethi" target="_blank" rel="noreferrer">
+            <span class="link-title">LinkedIn</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/sethi.gram" target="_blank" rel="noreferrer">
+            <span class="link-title">Instagram</span>
+            <span class="link-caption">@sethi.gram — life</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/sethi.ai" target="_blank" rel="noreferrer">
+            <span class="link-title">Instagram</span>
+            <span class="link-caption">@sethi.ai — AI &amp; building</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://threads.net/@sethi.gram" target="_blank" rel="noreferrer">
+            <span class="link-title">Threads</span>
+            <span class="link-caption">@sethi.gram</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://akshaysethi.co/links">
+            <span class="link-title">Links</span>
+            <span class="link-caption">Things I recommend</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://akshaysethi.co/prompts">
+            <span class="link-title">Prompts</span>
+            <span class="link-caption">Prompts I write/like</span>
+          </a>
+        </li>
+        <li>
+          <div class="email-row">
+            <span class="link-title">Email</span>
+            <a href="mailto:sethi.gram@gmail.com" class="email-addr">sethi.gram@gmail.com</a>
+            <a href="mailto:hey@akshaysethi.co" class="email-addr">hey@akshaysethi.co</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-dot"></div>
+    </footer>
+
+  </div>
+</body>
+</html>
