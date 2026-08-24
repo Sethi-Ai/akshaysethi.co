@@ -15,19 +15,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #F5F5F0;
-      --text:       #111111;
-      --muted:      #888888;
-      --faint:      #BBBBBB;
-      --divider:    #E4E4DE;
-      --orange:     #F47A1F;
-      --orange-bg:  rgba(244, 122, 31, 0.07);
-      --orange-bar: 3px solid #F47A1F;
-      --serif:      'Playfair Display', Georgia, serif;
-      --sans:       'Inter', system-ui, sans-serif;
+      --bg:        #F5F5F0;
+      --text:      #111111;
+      --muted:     #888888;
+      --faint:     #BBBBBB;
+      --divider:   #E4E4DE;
+      --orange:    #F47A1F;
+      --orange-bg: rgba(244, 122, 31, 0.07);
+      --serif:     'Playfair Display', Georgia, serif;
+      --sans:      'Inter', system-ui, sans-serif;
     }
 
-    /* ── Dark mode tokens ── */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg:        #111111;
@@ -56,7 +54,7 @@
       padding: 56px 24px 72px;
     }
 
-    /* ── Avatar + Name row ── */
+    /* ── Identity ── */
     .identity {
       display: flex;
       align-items: center;
@@ -75,17 +73,13 @@
       transition: border-color 0.2s;
     }
 
-    .avatar:hover {
-      border-color: var(--orange);
-    }
+    .avatar:hover { border-color: var(--orange); }
 
-    /* ── Header ── */
     .name {
       font-family: var(--serif);
       font-size: 28px;
       font-weight: 400;
       letter-spacing: -0.4px;
-      margin-bottom: 0;
       line-height: 1.2;
     }
 
@@ -95,13 +89,9 @@
       font-size: 14px;
       line-height: 1.7;
       color: var(--muted);
-      margin-bottom: 4px;
     }
 
-    .bio strong {
-      color: var(--text);
-      font-weight: 400;
-    }
+    .bio strong { color: var(--text); font-weight: 400; }
 
     /* ── Sections ── */
     .section { margin-top: 36px; }
@@ -115,7 +105,7 @@
       margin-bottom: 12px;
     }
 
-    /* ── Link rows ── */
+    /* ── Link list ── */
     .links { list-style: none; }
 
     .links li {
@@ -124,17 +114,13 @@
       overflow: hidden;
     }
 
-    .links li:last-child {
-      border-bottom: 1px solid var(--divider);
-    }
+    .links li:last-child { border-bottom: 1px solid var(--divider); }
 
-    /* The orange left bar — hidden by default, slides in on hover */
+    /* Orange bar */
     .links li::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
+      left: 0; top: 0; bottom: 0;
       width: 3px;
       background: var(--orange);
       transform: scaleY(0);
@@ -143,16 +129,16 @@
       border-radius: 0 2px 2px 0;
     }
 
-    .links li:hover::before {
-      transform: scaleY(1);
-    }
+    .links li:hover::before { transform: scaleY(1); }
 
+    /* Row layout */
     .links a,
     .links .email-row {
       display: flex;
-      flex-direction: column;
-      padding: 12px 0 12px 0;
-      gap: 2px;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 0;
       cursor: pointer;
       background: transparent;
       transition: background 0.18s ease, padding-left 0.18s ease;
@@ -161,7 +147,31 @@
     .links li:hover > a,
     .links li:hover > .email-row {
       background: var(--orange-bg);
-      padding-left: 14px;
+      padding-left: 12px;
+    }
+
+    /* Platform icon */
+    .link-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.18s ease;
+    }
+
+    .links li:hover .link-icon { transform: scale(1.08); }
+
+    .link-icon svg { width: 17px; height: 17px; fill: #fff; }
+
+    /* Text content */
+    .link-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .link-title {
@@ -180,16 +190,20 @@
     .links li:hover .link-title { color: var(--orange); }
     .links li:hover .link-caption { color: var(--orange); opacity: 0.7; }
 
-    /* ── Email row ── */
-    .email-row {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 0;
-      gap: 3px;
+    /* Arrow */
+    .link-arrow {
+      font-size: 14px;
+      color: var(--faint);
+      transition: color 0.12s, transform 0.15s;
+      flex-shrink: 0;
     }
 
-    .email-row .link-title { margin-bottom: 2px; }
+    .links li:hover .link-arrow {
+      color: var(--orange);
+      transform: translateX(3px);
+    }
 
+    /* Email addresses */
     .email-addr {
       font-size: 12px;
       color: var(--faint);
@@ -198,6 +212,7 @@
 
     .links li:hover .email-addr { color: var(--orange); opacity: 0.7; }
 
+    /* Mobile tap */
     @media (hover: none) {
       .links li:active > a,
       .links li:active > .email-row {
@@ -207,10 +222,7 @@
     }
 
     /* ── Footer ── */
-    .footer {
-      margin-top: 52px;
-      text-align: center;
-    }
+    .footer { margin-top: 52px; text-align: center; }
 
     .footer-dot {
       width: 6px;
@@ -226,7 +238,7 @@
 <body>
   <div class="wrap">
 
-    <!-- Avatar + Name -->
+    <!-- Identity -->
     <div class="identity">
       <img src="dp.jpg" alt="Akshay Sethi" class="avatar" />
       <h1 class="name">Akshay <span>Sethi</span></h1>
@@ -245,8 +257,14 @@
       <ul class="links">
         <li>
           <a href="https://akshaysethi.co">
-            <span class="link-title">Me &amp; My Life</span>
-            <span class="link-caption">Writing · Quotes I like · Photography · Music</span>
+            <div class="link-icon" style="background:#F47A1F;">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Me &amp; My Life</span>
+              <span class="link-caption">Writing · Quotes I like · Photography · Music</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
       </ul>
@@ -258,8 +276,14 @@
       <ul class="links">
         <li>
           <a href="https://akshaysethi.co/connect">
-            <span class="link-title">Connect</span>
-            <span class="link-caption">What I'm up to work-wise, in detail</span>
+            <div class="link-icon" style="background:#111111;">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-1v8c0 .55-.45 1-1 1H6v1c0 1.1.9 2 2 2h10l4 4V8c0-1.1-.9-2-2-2zm-3 5V4c0-1.1-.9-2-2-2H4C2.9 2 2 2.9 2 4v13l4-4h9c1.1 0 2-.9 2-2z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Connect</span>
+              <span class="link-caption">What I'm up to work-wise, in detail</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
       </ul>
@@ -269,48 +293,96 @@
     <section class="section">
       <p class="label">Connect</p>
       <ul class="links">
+
         <li>
-          <a href="https://linkedin.com/in/akshaysethi" target="_blank" rel="noreferrer">
-            <span class="link-title">LinkedIn</span>
+          <a href="https://linkedin.com/in/akshay-sethi" target="_blank" rel="noreferrer">
+            <div class="link-icon" style="background:#0A66C2;">
+              <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.7V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">LinkedIn</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <a href="https://instagram.com/sethi.gram" target="_blank" rel="noreferrer">
-            <span class="link-title">Instagram</span>
-            <span class="link-caption">@sethi.gram — life</span>
+            <div class="link-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+              <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Instagram</span>
+              <span class="link-caption">@sethi.gram — life</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <a href="https://instagram.com/sethi.ai" target="_blank" rel="noreferrer">
-            <span class="link-title">Instagram</span>
-            <span class="link-caption">@sethi.ai — AI &amp; building</span>
+            <div class="link-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+              <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Instagram</span>
+              <span class="link-caption">@sethi.ai — AI &amp; building</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <a href="https://threads.net/@sethi.gram" target="_blank" rel="noreferrer">
-            <span class="link-title">Threads</span>
-            <span class="link-caption">@sethi.gram</span>
+            <div class="link-icon" style="background:#000000;">
+              <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7c-.199 0-.392-.08-.534-.22a.756.756 0 0 1-.221-.534V6.8c0-.2.08-.39.221-.534a.754.754 0 0 1 .534-.22h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71c0 .414-.336.754-.75.754h-.82z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Threads</span>
+              <span class="link-caption">@sethi.gram</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <a href="https://akshaysethi.co/links">
-            <span class="link-title">Links</span>
-            <span class="link-caption">Things I recommend</span>
+            <div class="link-icon" style="background:#2A2A2A;">
+              <svg viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Links</span>
+              <span class="link-caption">Things I recommend</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <a href="https://akshaysethi.co/prompts">
-            <span class="link-title">Prompts</span>
-            <span class="link-caption">Prompts I write/like</span>
+            <div class="link-icon" style="background:#F47A1F;">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Prompts</span>
+              <span class="link-caption">Prompts I write/like</span>
+            </div>
+            <span class="link-arrow">→</span>
           </a>
         </li>
+
         <li>
           <div class="email-row">
-            <span class="link-title">Email</span>
-            <a href="mailto:sethi.gram@gmail.com" class="email-addr">sethi.gram@gmail.com</a>
-            <a href="mailto:hey@akshaysethi.co" class="email-addr">hey@akshaysethi.co</a>
+            <div class="link-icon" style="background:#F47A1F;">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="link-left">
+              <span class="link-title">Email</span>
+              <a href="mailto:sethi.gram@gmail.com" class="email-addr">sethi.gram@gmail.com</a>
+            </div>
           </div>
         </li>
+
       </ul>
     </section>
 
@@ -320,5 +392,20 @@
     </footer>
 
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    window.addEventListener('load', function () {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.2 },
+        colors: ['#F47A1F', '#111111', '#F5F5F0', '#FFFFFF', '#F47A1F'],
+        scalar: 0.9,
+        gravity: 1.2,
+        ticks: 200
+      });
+    });
+  </script>
 </body>
 </html>
