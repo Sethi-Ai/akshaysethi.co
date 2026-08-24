@@ -31,11 +31,6 @@
     .nav-right { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 6px; }
     .nav-sep { color: var(--divider); }
 
-    /* ── Top bar ── */
-    .topbar { display: flex; justify-content: flex-end; padding: 24px 0 0; }
-    .topbar a { font-size: 12px; color: var(--faint); transition: color .12s; letter-spacing: 0.02em; }
-    .topbar a:hover { color: var(--orange); }
-
     /* ── Hero ── */
     .hero { display: grid; grid-template-columns: 1fr 300px; gap: 52px; padding: 40px 0 52px; border-bottom: 1px solid var(--divider); }
 
@@ -58,6 +53,37 @@
     .obs-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; flex-shrink: 0; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
     .obs-label { color: var(--faint); margin-right: 2px; }
+
+    /* Social rows */
+    .social-rows { display: flex; flex-direction: column; margin-bottom: 8px; }
+    .social-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--divider); position: relative; overflow: hidden; transition: background .15s, padding-left .15s; }
+    .social-row:first-child { border-top: 1px solid var(--divider); }
+    .social-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2.5px; background: var(--orange); transform: scaleY(0); transform-origin: center; transition: transform .2s cubic-bezier(.4,0,.2,1); }
+    .social-row:hover::before { transform: scaleY(1); }
+    .social-row:hover { background: var(--orange-bg); padding-left: 10px; }
+    .social-icon-box { width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .15s; }
+    .social-row:hover .social-icon-box { transform: scale(1.08); }
+    .social-icon-box svg { width: 13px; height: 13px; fill: #fff; }
+    .social-text .social-name { font-size: 13px; color: var(--text); transition: color .12s; }
+    .social-text .social-handle { font-size: 11px; color: var(--faint); }
+    .social-row:hover .social-name { color: var(--orange); }
+
+    /* Now playing */
+    .now-label { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--faint); margin-bottom: 8px; }
+    .now-label span { color: var(--orange); margin-right: 3px; }
+    .now-card { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--divider); border-radius: 8px; background: #fff; transition: border-color .15s, background .15s; position: relative; overflow: hidden; }
+    .now-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--orange); transform: scaleY(0); transform-origin: center; transition: transform .2s cubic-bezier(.4,0,.2,1); }
+    .now-card:hover::before { transform: scaleY(1); }
+    .now-card:hover { background: var(--orange-bg); border-color: rgba(244,122,31,.2); }
+    .now-art { width: 38px; height: 38px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: var(--divider); display: none; }
+    .now-icon { width: 38px; height: 38px; border-radius: 4px; background: #1DB954; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .now-icon svg { width: 18px; height: 18px; fill: #fff; }
+    .now-info { flex: 1; min-width: 0; }
+    .now-title { font-size: 13px; color: var(--text); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .12s; }
+    .now-artist { font-size: 11px; color: var(--faint); }
+    .now-card:hover .now-title { color: var(--orange); }
+    .now-arrow { width: 14px; height: 14px; stroke: var(--faint); flex-shrink: 0; transition: stroke .12s, transform .12s; }
+    .now-card:hover .now-arrow { stroke: var(--orange); transform: translate(2px,-2px); }
 
     /* Socials */
     .socials { display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
@@ -158,7 +184,7 @@
   <nav>
     <a class="nav-name">Akshay <span>Sethi</span></a>
     <ul class="nav-links">
-      <li><a href="#writing">writing</a></li>
+      <li><a href="/writing">writing</a></li>
       <li><a href="#photos">photos</a></li>
     </ul>
     <div class="nav-right">
@@ -198,22 +224,42 @@
       </div>
 
       <!-- Socials -->
-      <div class="socials">
-        <a href="https://instagram.com/sethi.gram" target="_blank" class="si" title="@sethi.gram">
-          <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      <div class="social-rows">
+        <a href="https://instagram.com/sethi.gram" target="_blank" rel="noreferrer" class="social-row">
+          <div class="social-icon-box" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </div>
+          <div class="social-text">
+            <p class="social-name">sethi.gram</p>
+            <p class="social-handle">@sethi.gram — life</p>
+          </div>
         </a>
-        <a href="https://threads.net/@sethi.gram" target="_blank" class="si" title="Threads">
-          <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7a.754.754 0 0 1-.755-.754V6.8c0-.415.338-.754.755-.754h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71a.754.754 0 0 1-.75.754h-.82z"/></svg>
+        <a href="https://threads.net/@sethi.gram" target="_blank" rel="noreferrer" class="social-row">
+          <div class="social-icon-box" style="background:#000;">
+            <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7a.754.754 0 0 1-.755-.754V6.8c0-.415.338-.754.755-.754h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71a.754.754 0 0 1-.75.754h-.82z"/></svg>
+          </div>
+          <div class="social-text">
+            <p class="social-name">Threads</p>
+            <p class="social-handle">@sethi.gram</p>
+          </div>
         </a>
       </div>
       <p class="email-pref">Prefer writing an email — <a href="mailto:sethi.gram@gmail.com">sethi.gram@gmail.com</a></p>
       <a href="/connect" class="work-link">the work side →</a>
 
       <!-- Currently listening -->
-      <p class="listening-label"><span>♪</span> currently on repeat</p>
-      <div class="listening">
-        <iframe style="border-radius:8px" src="https://open.spotify.com/embed/track/0ny1jaCM7x9NO9RqJBclms?utm_source=generator&theme=0" width="100%" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
+      <p class="now-label"><span>♪</span> currently on repeat</p>
+      <a href="https://open.spotify.com/track/0ny1jaCM7x9NO9RqJBclms" target="_blank" rel="noreferrer" class="now-card">
+        <div class="now-icon" id="now-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </div>
+        <img id="now-art" class="now-art" alt="album art" />
+        <div class="now-info">
+          <p class="now-title" id="now-title">Loading...</p>
+          <p class="now-artist" id="now-artist">Spotify</p>
+        </div>
+        <svg class="now-arrow" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
     </div>
 
     <!-- Photo -->
@@ -338,5 +384,10 @@
   function tick(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));const h=n.getHours();const m=String(n.getMinutes()).padStart(2,'0');const ap=h>=12?'PM':'AM';document.getElementById('clock').textContent=`${h%12||12}:${m} ${ap}`;}
   tick();setInterval(tick,60000);
   fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4595&longitude=77.0266&current_weather=true').then(r=>r.json()).then(d=>{document.getElementById('weather').textContent=`☁ ${Math.round(d.current_weather.temperature)}°C`;}).catch(()=>{});
+  fetch('https://open.spotify.com/oembed?url=https://open.spotify.com/track/0ny1jaCM7x9NO9RqJBclms').then(r=>r.json()).then(d=>{
+    document.getElementById('now-title').textContent=d.title||'Open in Spotify';
+    document.getElementById('now-artist').textContent=d.author_name||'Spotify';
+    if(d.thumbnail_url){const art=document.getElementById('now-art');art.src=d.thumbnail_url;art.style.display='block';document.getElementById('now-icon').style.display='none';}
+  }).catch(()=>{document.getElementById('now-title').textContent='Open in Spotify';document.getElementById('now-artist').textContent='Spotify';});
 </script>
 </html>

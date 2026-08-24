@@ -6,6 +6,7 @@
   ],
   "rewrites": [
     { "source": "/alpha", "destination": "/alpha.html" },
+    { "source": "/writing", "destination": "/writing.html" },
     { "source": "/me", "destination": "/me.html" },
     { "source": "/connect", "destination": "/connect.html" },
     { "source": "/links", "destination": "/links.html" },
