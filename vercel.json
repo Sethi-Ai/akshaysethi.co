@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/", "destination": "/me", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/alpha", "destination": "/alpha.html" },
     { "source": "/me", "destination": "/me.html" },
