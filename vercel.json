@@ -1,10 +1,13 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
-    { "src": "/me", "dest": "/me.html" },
-    { "src": "/connect", "dest": "/index.html" },
-    { "src": "/profile", "dest": "/profile.html" },
-    { "src": "/portfolio", "dest": "/portfolio.html" }
+  "redirects": [
+    { "source": "/", "destination": "/me", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/me", "destination": "/me.html" },
+    { "source": "/connect", "destination": "/connect.html" },
+    { "source": "/profile", "destination": "/profile.html" },
+    { "source": "/portfolio", "destination": "/portfolio.html" }
   ]
 }

@@ -198,6 +198,14 @@
 
     .links li:hover .email-addr { color: var(--orange); opacity: 0.7; }
 
+    @media (hover: none) {
+      .links li:active > a,
+      .links li:active > .email-row {
+        background: rgba(244,122,31,0.08);
+        padding-left: 8px;
+      }
+    }
+
     /* ── Footer ── */
     .footer {
       margin-top: 52px;

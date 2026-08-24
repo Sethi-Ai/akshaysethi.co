@@ -14,7 +14,7 @@
 <meta name="description" content="Growth marketer who learned to speak AI. Co-Founder at AiCatalyst. Consulting by day, co-working with Claude by night.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --orange: #F47A1F;
@@ -55,13 +55,17 @@
   .sub.title { font-size: 14px; color: var(--black); font-weight: 500; margin-top: 6px; }
   .divider { width: 32px; height: 2px; background: var(--orange); margin: 12px 0 16px 0; border-radius: 1px; }
   .section { margin-top: 20px; }
-  .section-label { font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+  .section-label { font-family: 'Playfair Display', Georgia, serif; font-size: 13px; font-weight: 500; font-style: italic; letter-spacing: 0.02em; color: #888; margin-bottom: 14px; }
   .about-text { font-size: 14px; line-height: 1.7; color: var(--charcoal); border-left: 2px solid var(--border); padding-left: 12px; }
   .about-text p { margin: 0 0 7px 0; }
-  .item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); border-radius: 6px; cursor: default; opacity: 1; transform: translateY(0) scale(1); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.15s ease; }
+  .item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); border-radius: 4px; cursor: default; opacity: 1; transform: translateY(0) scale(1); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.18s ease, padding-left 0.18s ease; position: relative; overflow: hidden; }
+  .item::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--orange); transform: scaleY(0); transform-origin: center; transition: transform 0.2s cubic-bezier(0.4,0,0.2,1); border-radius: 0 2px 2px 0; }
+  .item:hover::before { transform: scaleY(1); }
   .item.hidden { opacity: 0; transform: translateY(28px) scale(0.88); }
   .item:last-child { border-bottom: none; }
-  .item:hover { background: var(--surface); padding-left: 6px; }
+  .item:hover { background: rgba(244,122,31,0.05); padding-left: 14px; }
+  .item:hover .content-title { color: var(--orange); }
+  .item:hover .avatar svg { fill: var(--orange); }
   .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--light-grey); overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Anton', sans-serif; font-size: 16px; color: var(--black); border: 1px solid var(--border-mid); }
   .content-title { font-size: 14px; font-weight: 600; color: var(--black); display: flex; align-items: center; gap: 6px; }
   .content-title a { color: var(--black); text-decoration: none; }
@@ -88,6 +92,9 @@
   #theme-toggle { position: fixed; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid #CCCCCC; background: #F0F0F0; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; z-index: 9999; transition: all 0.2s ease; outline: none; box-shadow: 0 1px 6px rgba(0,0,0,0.12); }
   body.dark #theme-toggle { background: #2A2A2A; border-color: #555; }
   #theme-toggle:hover { border-color: #F47A1F; transform: scale(1.06); }
+  @media (hover: none) {
+    .item:active { background: rgba(244,122,31,0.08); padding-left: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -115,8 +122,7 @@
   <div class="section">
     <div class="section-label">About</div>
     <div class="about-text">
-      <p>Growth marketer who learned to speak AI. Now I'm building things with it.</p>
-      <p>Consulting by day. Co-working with Claude by night.</p>
+      <p>Growth marketer who learned to speak AI. Now building things with it.</p>
       <p>AI &mdash; Bubble or Revolution. Sticking around to find out.</p>
     </div>
   </div>
@@ -131,7 +137,7 @@
         <div class="content-title">Independent Consultant <span class="badge">Active</span></div>
         <div class="content-desc">
           10+ years in growth. Helping brands with clarity and practical AI use-cases.<br>
-          <a href="https://wa.me/918082971415?text=Hello%20I%20want%20to%20book%20a%20call" target="_blank">Book a call</a> &middot; <a href="https://www.linkedin.com/in/akshay-sethi/" target="_blank">LinkedIn</a>
+          <a href="https://wa.me/918082971415?text=Hello%20I%20want%20to%20book%20a%20call" target="_blank">Book a call</a>
         </div>
       </div>
     </div>
@@ -147,39 +153,25 @@
       </div>
     </div>
 
-    <div class="item">
-      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Anton',sans-serif;font-size:18px;">S</div>
-      <div>
-        <div class="content-title"><a href="https://www.instagram.com/sethi.ai/" target="_blank">sethi.ai</a> <span class="badge">Main</span></div>
-        <div class="content-desc">
-          Ideas, workflows, and practical AI use-cases.<br>
-          <a href="https://www.instagram.com/sethi.ai/" target="_blank" style="display:inline-flex;align-items:center;gap:5px;border-bottom:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>Follow</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="avatar" style="background:#111;color:#fff;font-family:'Anton',sans-serif;">SG</div>
-      <div>
-        <div class="content-title"><a href="https://www.instagram.com/sethi.gram/" target="_blank">sethi.gram</a> <span class="badge">Side</span></div>
-        <div class="content-desc">
-          Life, tools, gadgets, and experiments around tech.<br>
-          <a href="https://www.instagram.com/sethi.gram/" target="_blank" style="display:inline-flex;align-items:center;gap:5px;border-bottom:none;"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>Follow</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- OTHER PROJECTS -->
+  <!-- PROJECTS I'M WORKING ON -->
   <div class="section">
-    <div class="section-label">Other Projects</div>
+    <div class="section-label">Projects I'm working on</div>
 
     <div class="item">
-      <div class="avatar" style="background:#111;color:#fff;font-family:'Anton',sans-serif;">2B</div>
+      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Anton',sans-serif;">BS</div>
       <div>
-        <div class="content-title">2Brain/OS <span style="font-size:11px;color:var(--grey);font-weight:400;">(Beta)</span></div>
-        <div class="content-desc">Launching soon for public.<br><a href="https://AiBrain.promptsethi.com" target="_blank">Explore &rarr;</a></div>
+        <div class="content-title">BlendSpend <span class="badge">Closed Beta</span></div>
+        <div class="content-desc">Couple expense tracking — built for two.</div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:#111;color:#fff;font-family:'Anton',sans-serif;">KJ</div>
+      <div>
+        <div class="content-title">KnotJot <span class="badge">Coming Soon</span></div>
+        <div class="content-desc">Couple journey &amp; vision board — your story, together.</div>
       </div>
     </div>
 
@@ -187,8 +179,90 @@
       <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Anton',sans-serif;">PS</div>
       <div>
         <div class="content-title">promptsethi.com</div>
-        <div class="content-desc">Simple prompts and use-cases for daily AI use.<br><a href="https://promptsethi.com" target="_blank">Explore &rarr;</a></div>
+        <div class="content-desc">Repository of prompts that matter.<br><a href="https://promptsethi.com" target="_blank">Explore &rarr;</a></div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- SOCIALS -->
+  <div class="section">
+    <div class="section-label">Socials</div>
+
+    <div class="item">
+      <div class="avatar" style="background:var(--light-grey);border:1px solid var(--border-mid);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--black)"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.7V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
+      </div>
+      <div>
+        <div class="content-title"><a href="https://www.linkedin.com/in/akshay-sethi/" target="_blank">LinkedIn</a></div>
+        <div class="content-desc">Professional updates &amp; growth marketing work.<br><a href="https://www.linkedin.com/in/akshay-sethi/" target="_blank" style="border-bottom:none;">Connect &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:var(--light-grey);border:1px solid var(--border-mid);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--black)"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      </div>
+      <div>
+        <div class="content-title"><a href="https://www.instagram.com/sethi.gram/" target="_blank">sethi.gram</a> <span class="badge">Main</span></div>
+        <div class="content-desc">Life, tools, gadgets, and experiments around tech.<br><a href="https://www.instagram.com/sethi.gram/" target="_blank" style="border-bottom:none;">Follow &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:var(--light-grey);border:1px solid var(--border-mid);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--black)"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+      </div>
+      <div>
+        <div class="content-title"><a href="https://www.instagram.com/sethi.ai/" target="_blank">sethi.ai</a> <span class="badge">Building</span></div>
+        <div class="content-desc">Ideas, workflows, and practical AI use-cases.<br><a href="https://www.instagram.com/sethi.ai/" target="_blank" style="border-bottom:none;">Follow &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:var(--light-grey);border:1px solid var(--border-mid);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--black)"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7c-.199 0-.392-.08-.534-.22a.756.756 0 0 1-.221-.534V6.8c0-.2.08-.39.221-.534a.754.754 0 0 1 .534-.22h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71c0 .414-.336.754-.75.754h-.82z"/></svg>
+      </div>
+      <div>
+        <div class="content-title"><a href="https://www.threads.net/@sethi.gram" target="_blank">Threads</a></div>
+        <div class="content-desc">@sethi.gram — thinking out loud.<br><a href="https://www.threads.net/@sethi.gram" target="_blank" style="border-bottom:none;">Follow &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:var(--light-grey);border:1px solid var(--border-mid);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--black)"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div>
+        <div class="content-title">Email</div>
+        <div class="content-desc"><a href="mailto:sethi.gram@gmail.com">sethi.gram@gmail.com</a><br>PR drops, tech, early access — I review things worth a second look.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- QUOTES -->
+  <div class="section">
+    <div class="section-label">Quotes I'm living nowadays</div>
+
+    <div class="item">
+      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;">"</div>
+      <div><div class="content-title" style="font-style:italic;font-family:'Playfair Display',serif;font-weight:400;">The bare minimum never changed anything.</div></div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;">"</div>
+      <div><div class="content-title" style="font-style:italic;font-family:'Playfair Display',serif;font-weight:400;">If oats can become milk, you can become anything.</div></div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;">"</div>
+      <div><div class="content-title" style="font-style:italic;font-family:'Playfair Display',serif;font-weight:400;">Stop planning, start breaking things.</div></div>
+    </div>
+
+    <div class="item">
+      <div class="avatar" style="background:#F47A1F;color:#fff;font-family:'Playfair Display',serif;font-size:20px;font-style:italic;">"</div>
+      <div><div class="content-title" style="font-style:italic;font-family:'Playfair Display',serif;font-weight:400;">Your future is shaped by the habits you repeat, not the goals you set.</div></div>
     </div>
 
   </div>
@@ -199,7 +273,7 @@
     If this resonates &mdash; reach out.
   </div>
 
-  <!-- SOCIAL -->
+  <!-- SOCIAL ICONS -->
   <div class="icons">
     <a href="https://www.linkedin.com/in/akshay-sethi/" target="_blank" class="icon-link" title="LinkedIn">
       <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.7V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
@@ -212,6 +286,9 @@
     </a>
     <a href="https://www.instagram.com/sethi.gram/" target="_blank" class="icon-link" title="@sethi.gram">
       <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+    </a>
+    <a href="https://www.threads.net/@sethi.gram" target="_blank" class="icon-link" title="Threads">
+      <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7c-.199 0-.392-.08-.534-.22a.756.756 0 0 1-.221-.534V6.8c0-.2.08-.39.221-.534a.754.754 0 0 1 .534-.22h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71c0 .414-.336.754-.75.754h-.82z"/></svg>
     </a>
   </div>
 
