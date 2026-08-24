@@ -21,6 +21,16 @@
 
     .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px 80px; }
 
+    /* ── Nav ── */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0 0; margin-bottom: 0; border-bottom: 1px solid var(--divider); padding-bottom: 20px; }
+    .nav-name { font-family: var(--serif); font-size: 16px; font-weight: 500; color: var(--text); letter-spacing: -0.2px; }
+    .nav-name span { color: var(--orange); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); transition: color .12s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-right { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 6px; }
+    .nav-sep { color: var(--divider); }
+
     /* ── Top bar ── */
     .topbar { display: flex; justify-content: flex-end; padding: 24px 0 0; }
     .topbar a { font-size: 12px; color: var(--faint); transition: color .12s; letter-spacing: 0.02em; }
@@ -83,15 +93,22 @@
     /* ── Writing + Quotes ── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; padding: 52px 0 0; border-top: 1px solid var(--divider); }
 
-    /* Writing */
+    .email-pref { font-size: 12px; color: var(--faint); margin: 10px 0 10px; }
+    .email-pref a { color: var(--muted); border-bottom: 1px solid var(--divider); transition: color .12s; }
+    .email-pref a:hover { color: var(--orange); }
+    .work-link { font-size: 12px; color: var(--faint); transition: color .12s; display: inline-block; margin-bottom: 28px; }
+    .work-link:hover { color: var(--orange); }
+
+    /* Writing — Yash style */
     .writing-list { list-style: none; }
-    .writing-item { display: flex; align-items: baseline; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
+    .writing-item { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
     .writing-item:first-child { border-top: 1px solid var(--divider); }
+    .writing-left { display: flex; align-items: baseline; gap: 16px; flex: 1; }
     .writing-date { font-size: 11px; color: var(--faint); min-width: 52px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    .writing-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
     .writing-title { font-size: 13px; color: var(--text); transition: color .12s; line-height: 1.4; }
     .writing-item:hover .writing-title { color: var(--orange); }
-    .writing-tag { font-size: 10px; color: var(--faint); }
+    .writing-tag { font-size: 11px; color: var(--faint); flex-shrink: 0; transition: color .12s; }
+    .writing-item:hover .writing-tag { color: var(--orange); }
 
     /* Quotes */
     .quotes-list { display: flex; flex-direction: column; gap: 22px; }
@@ -137,10 +154,20 @@
 <body>
 <div class="wrap">
 
-  <!-- Top bar -->
-  <div class="topbar">
-    <a href="/connect">the work side →</a>
-  </div>
+  <!-- Nav -->
+  <nav>
+    <a class="nav-name">Akshay <span>Sethi</span></a>
+    <ul class="nav-links">
+      <li><a href="#writing">writing</a></li>
+      <li><a href="#photos">photos</a></li>
+    </ul>
+    <div class="nav-right">
+      <span id="clock">—</span>
+      <span class="nav-sep">|</span>
+      <span>Gurgaon, IN</span>
+      <span id="weather">—</span>
+    </div>
+  </nav>
 
   <!-- Hero -->
   <section class="hero">
@@ -175,19 +202,12 @@
         <a href="https://instagram.com/sethi.gram" target="_blank" class="si" title="@sethi.gram">
           <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
         </a>
-        <a href="https://instagram.com/sethi.ai" target="_blank" class="si" title="@sethi.ai">
-          <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
         <a href="https://threads.net/@sethi.gram" target="_blank" class="si" title="Threads">
           <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7a.754.754 0 0 1-.755-.754V6.8c0-.415.338-.754.755-.754h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71a.754.754 0 0 1-.75.754h-.82z"/></svg>
         </a>
-        <a href="https://linkedin.com/in/akshay-sethi" target="_blank" class="si" title="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.6v1.7h.1a4 4 0 0 1 3.6-2c3.8 0 4.5 2.5 4.5 5.7V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"/></svg>
-        </a>
-        <a href="mailto:sethi.gram@gmail.com" class="si" title="Email">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
       </div>
+      <p class="email-pref">Prefer writing an email — <a href="mailto:sethi.gram@gmail.com">sethi.gram@gmail.com</a></p>
+      <a href="/connect" class="work-link">the work side →</a>
 
       <!-- Currently listening -->
       <p class="listening-label"><span>♪</span> currently on repeat</p>
@@ -236,11 +256,11 @@
       <p class="sec-label">Writing</p>
       <ul class="writing-list">
         <li class="writing-item">
-          <span class="writing-date">24.08.26</span>
-          <div class="writing-info">
+          <div class="writing-left">
+            <span class="writing-date">24.08.26</span>
             <a class="writing-title" href="/writing/the-art-of-slowing-down">The Art of Slowing Down</a>
-            <span class="writing-tag">Life</span>
           </div>
+          <span class="writing-tag">Life</span>
         </li>
       </ul>
     </div>
@@ -314,4 +334,9 @@
 
 </div>
 </body>
+<script>
+  function tick(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));const h=n.getHours();const m=String(n.getMinutes()).padStart(2,'0');const ap=h>=12?'PM':'AM';document.getElementById('clock').textContent=`${h%12||12}:${m} ${ap}`;}
+  tick();setInterval(tick,60000);
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4595&longitude=77.0266&current_weather=true').then(r=>r.json()).then(d=>{document.getElementById('weather').textContent=`☁ ${Math.round(d.current_weather.temperature)}°C`;}).catch(()=>{});
+</script>
 </html>
