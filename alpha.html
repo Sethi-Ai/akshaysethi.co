@@ -12,8 +12,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #EDEDEA; --card: #F5F5F2; --text: #111111; --muted: #888888;
-      --faint: #BBBBBB; --divider: #DDDDD8; --orange: #F47A1F;
+      --bg: #F5F0E8; --card: #EDE8DF; --text: #111111; --muted: #888888;
+      --faint: #BBBBBB; --divider: #DDD8CE; --orange: #F47A1F;
       --orange-bg: rgba(244,122,31,0.07);
       --serif: 'Playfair Display', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
@@ -33,13 +33,14 @@
     .nav-row1 { display: flex; align-items: center; justify-content: space-between; padding: 28px 0 10px; }
     .nav-name { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--text); letter-spacing: -0.3px; }
     .nav-name span { color: var(--orange); }
-    .nav-centre { display: flex; gap: 24px; list-style: none; }
-    .nav-centre a { font-size: 13px; color: var(--muted); transition: color .12s; }
-    .nav-centre a:hover { color: var(--orange); }
-    .nav-work { font-size: 13px; color: var(--muted); transition: color .12s; }
-    .nav-work:hover { color: var(--orange); }
-    .nav-row2 { padding: 8px 0 16px; border-bottom: 1px solid var(--divider); font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+    .nav-meta { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
     .nav-dot { color: var(--divider); }
+    .nav-row2 { padding: 8px 0 16px; border-bottom: 1px solid var(--divider); display: flex; align-items: center; justify-content: space-between; }
+    .nav-pages { display: flex; gap: 24px; list-style: none; }
+    .nav-pages a { font-size: 13px; color: var(--muted); transition: color .12s; }
+    .nav-pages a:hover { color: var(--orange); }
+    .nav-work { font-family: var(--serif); font-size: 14px; font-style: italic; color: var(--orange); transition: opacity .12s; }
+    .nav-work:hover { opacity: 0.75; }
 
     /* ════ HERO ════ */
     .hero { display: grid; grid-template-columns: 1fr 300px; gap: 52px; padding: 44px 0 52px; border-bottom: 1px solid var(--divider); }
@@ -128,8 +129,12 @@
     .photo-cell { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: var(--divider); border-radius: 2px; }
     .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
     .photo-cell:hover img { transform: scale(1.04); }
-    .photo-cell::after { content: ''; position: absolute; inset: 0; background: rgba(244,122,31,0); transition: background .2s; }
-    .photo-cell:hover::after { background: rgba(244,122,31,0.06); }
+    /* Tag — always visible bottom left */
+    .photo-tag { position: absolute; bottom: 8px; left: 8px; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.45); padding: 3px 8px; border-radius: 20px; z-index: 2; backdrop-filter: blur(4px); }
+    /* Caption — shows on hover */
+    .photo-caption { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 12px; opacity: 0; transition: opacity .2s; z-index: 1; }
+    .photo-cell:hover .photo-caption { opacity: 1; }
+    .photo-caption span { font-size: 11px; color: rgba(255,255,255,0.9); font-family: var(--serif); font-style: italic; line-height: 1.3; }
     .photo-cta { text-align: center; padding: 20px 0 0; font-size: 13px; color: var(--muted); }
     .photo-cta a { color: var(--orange); border-bottom: 1px solid rgba(244,122,31,.3); transition: border-color .12s; }
     .photo-cta a:hover { border-color: var(--orange); }
@@ -165,7 +170,7 @@
     @media (max-width: 680px) {
       .wrap { padding: 0 20px; }
       .nav-outer { padding: 0 20px; }
-      .nav-centre { display: none; }
+      .nav-pages { display: none; }
       .hero { grid-template-columns: 1fr; gap: 28px; }
       .hero-photo { order: -1; }
       .hero-photo img { aspect-ratio: 4/5; }
@@ -184,18 +189,20 @@
     <div class="nav-outer">
       <div class="nav-row1">
         <a class="nav-name" href="/alpha">Akshay <span>Sethi</span></a>
-        <ul class="nav-centre">
+        <div class="nav-meta">
+          <span id="clock">—</span>
+          <span class="nav-dot">·</span>
+          <span>Gurgaon, IN</span>
+          <span class="nav-dot">·</span>
+          <span id="weather">—</span>
+        </div>
+      </div>
+      <div class="nav-row2">
+        <ul class="nav-pages">
           <li><a href="/writing">writing</a></li>
           <li><a href="/photos">photos</a></li>
         </ul>
         <a class="nav-work" href="/connect">the work side →</a>
-      </div>
-      <div class="nav-row2">
-        <span id="clock">—</span>
-        <span class="nav-dot">·</span>
-        <span>Gurgaon, IN</span>
-        <span class="nav-dot">·</span>
-        <span id="weather">—</span>
       </div>
     </div>
   </header>
@@ -327,15 +334,51 @@
         <a href="/photos" class="sec-all">see all photos →</a>
       </div>
       <div class="photo-grid">
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-flag.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-plane.jpg" alt="Sunset from plane" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-city.jpg" alt="City sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-3.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-4.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-5.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-6.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-7.jpg" alt="Sunset" loading="lazy" /></a>
-        <a href="/photos" class="photo-cell"><img src="photos/sunset-8.jpg" alt="Sunset" loading="lazy" /></a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-flag.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Gurgaon, rooftop</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-plane.jpg" alt="Sunset from plane" loading="lazy" />
+          <div class="photo-caption"><span>35,000 ft</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-city.jpg" alt="City sunset" loading="lazy" />
+          <div class="photo-caption"><span>City at dusk</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-3.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Somewhere in between</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-4.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Golden hour</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-5.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Last light</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-6.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Painted sky</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-7.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Before dark</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
+        <a href="/photos" class="photo-cell">
+          <img src="photos/sunset-8.jpg" alt="Sunset" loading="lazy" />
+          <div class="photo-caption"><span>Day ends</span></div>
+          <div class="photo-tag">Sunset</div>
+        </a>
       </div>
       <p class="photo-cta">
         These never made it to Instagram. <a href="/photos">Explore the full collection →</a>
@@ -349,7 +392,7 @@
         <div class="poster-cell" style="background:#111;display:flex;align-items:flex-end;padding:20px;">
           <p style="font-family:'Playfair Display',serif;font-size:17px;color:#F47A1F;line-height:1.4;">Create clarity<br>through action.</p>
         </div>
-        <div class="poster-cell" style="background:#F5F0E8;display:flex;align-items:flex-end;padding:20px;">
+        <div class="poster-cell" style="background:#C8BFB0;display:flex;align-items:flex-end;padding:20px;">
           <p style="font-family:'Playfair Display',serif;font-size:17px;color:#2C1810;line-height:1.4;">Build.<br>Automate.<br>Grow.</p>
         </div>
       </div>
