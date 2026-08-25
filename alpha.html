@@ -23,30 +23,33 @@
       --faint: #555555; --divider: #2A2A2A;
       --orange-bg: rgba(244,122,31,0.1);
     }
-
     html, body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; transition: background .2s, color .2s; }
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
 
-    /* ════ NAV ════ */
+    /* ── NAV ── */
     .nav-outer { max-width: 900px; margin: 0 auto; padding: 0 32px; }
     .nav-row1 { display: flex; align-items: center; justify-content: space-between; padding: 28px 0 10px; }
     .nav-name { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--text); letter-spacing: -0.3px; }
     .nav-name span { color: var(--orange); }
     .nav-meta { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
     .nav-dot { color: var(--divider); }
-    .nav-row2 { padding: 8px 0 16px; border-bottom: 1px solid var(--divider); display: flex; align-items: center; justify-content: space-between; }
-    .nav-pages { display: flex; gap: 24px; list-style: none; }
-    .nav-pages a { font-size: 13px; color: var(--muted); transition: color .12s; }
+    .nav-row2 { padding: 10px 0 18px; border-bottom: 1px solid var(--divider); display: flex; align-items: center; justify-content: space-between; }
+    .nav-pages { display: flex; gap: 28px; list-style: none; }
+    .nav-pages a { font-size: 15px; color: var(--muted); transition: color .12s; }
     .nav-pages a:hover { color: var(--orange); }
-    .nav-work { font-family: var(--serif); font-size: 14px; font-style: italic; color: var(--orange); transition: opacity .12s; }
+    /* the work side: "the work" black, "side →" orange */
+    .nav-work { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--text); transition: opacity .12s; }
     .nav-work:hover { opacity: 0.75; }
+    .nav-work-orange { color: var(--orange); }
 
-    /* ════ HERO ════ */
-    .hero { display: grid; grid-template-columns: 1fr 300px; gap: 52px; padding: 44px 0 52px; border-bottom: 1px solid var(--divider); }
+    /* ── HERO: left content | right photo+quotes ── */
+    .hero { display: grid; grid-template-columns: 1fr 300px; gap: 52px; padding: 44px 0 52px; border-bottom: 1px solid var(--divider); align-items: start; }
+
     .hero-heading { font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.45; letter-spacing: -0.3px; margin-bottom: 24px; color: var(--muted); }
     .hero-heading .nb { color: var(--text); font-weight: 500; }
     .hero-heading .no { color: var(--orange); font-weight: 500; }
+
     .slbl { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--faint); margin-bottom: 10px; }
     .sum { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 28px; }
     .sum li { font-size: 13px; color: var(--muted); display: flex; align-items: baseline; gap: 8px; }
@@ -63,6 +66,9 @@
     .convo-emoji { font-size: 13px; flex-shrink: 0; width: 16px; text-align: center; }
     .convo-label { color: var(--faint); flex-shrink: 0; }
     .convo-value { color: var(--text); }
+    /* Spotify row — clickable */
+    .convo-spotify { color: var(--text); transition: color .12s; }
+    .convo-spotify:hover { color: var(--orange); }
 
     /* Socials */
     .social-rows { margin-bottom: 12px; }
@@ -77,14 +83,22 @@
     .sn { font-size: 13px; color: var(--text); transition: color .12s; }
     .sh { font-size: 11px; color: var(--faint); }
     .social-row:hover .sn { color: var(--orange); }
-
     .email-pref { font-size: 12px; color: var(--faint); }
     .email-pref a { color: var(--muted); border-bottom: 1px solid var(--divider); transition: color .12s; }
     .email-pref a:hover { color: var(--orange); }
 
+    /* Right column: photo + quotes */
+    .hero-right { display: flex; flex-direction: column; gap: 32px; }
     .hero-photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 4px; display: block; }
 
-    /* ════ SECTIONS ════ */
+    /* Quotes (now in right col) */
+    .quotes-list { display: flex; flex-direction: column; gap: 18px; }
+    .quote-item { display: flex; gap: 12px; }
+    .qbar { width: 2px; background: var(--orange); border-radius: 2px; flex-shrink: 0; opacity: 0.5; transition: opacity .2s; }
+    .quote-item:hover .qbar { opacity: 1; }
+    .qtext { font-family: var(--serif); font-size: 13px; font-style: italic; line-height: 1.55; color: var(--text); }
+
+    /* ── SECTIONS ── */
     .section { padding: 52px 0 0; }
     .sec-label { font-size: 10px; font-weight: 500; letter-spacing: 0.13em; text-transform: uppercase; color: var(--faint); margin-bottom: 24px; }
     .sec-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; }
@@ -103,38 +117,26 @@
     .build-desc { font-size: 12px; color: var(--faint); line-height: 1.45; }
     .build-badge { font-size: 10px; color: var(--orange); background: var(--orange-bg); padding: 2px 7px; border-radius: 10px; margin-left: 6px; }
 
-    /* Writing list */
+    /* Writing full width */
     .writing-list { list-style: none; }
-    .writing-item { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
+    .writing-item { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--divider); }
     .writing-item:first-child { border-top: 1px solid var(--divider); }
-    .writing-left { display: flex; align-items: baseline; gap: 16px; flex: 1; }
-    .wdate { font-size: 11px; color: var(--faint); min-width: 52px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
-    .wtitle { font-size: 13px; color: var(--text); transition: color .12s; line-height: 1.4; }
+    .writing-left { display: flex; align-items: baseline; gap: 20px; flex: 1; }
+    .wdate { font-size: 11px; color: var(--faint); min-width: 56px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .wtitle { font-size: 14px; color: var(--text); transition: color .12s; line-height: 1.4; }
     .writing-item:hover .wtitle { color: var(--orange); }
     .wtag { font-size: 11px; color: var(--faint); flex-shrink: 0; transition: color .12s; }
     .writing-item:hover .wtag { color: var(--orange); }
-
-    /* Quotes */
-    .quotes-list { display: flex; flex-direction: column; gap: 22px; }
-    .quote-item { display: flex; gap: 14px; }
-    .qbar { width: 2px; background: var(--orange); border-radius: 2px; flex-shrink: 0; opacity: 0.5; transition: opacity .2s; }
-    .quote-item:hover .qbar { opacity: 1; }
-    .qtext { font-family: var(--serif); font-size: 14px; font-style: italic; line-height: 1.6; color: var(--text); }
-
-    /* Two column layout */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; padding: 52px 0 0; border-top: 1px solid var(--divider); }
 
     /* Photo grid */
     .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .photo-cell { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; background: var(--divider); border-radius: 2px; }
     .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
     .photo-cell:hover img { transform: scale(1.04); }
-    /* Tag — always visible bottom left */
     .photo-tag { position: absolute; bottom: 8px; left: 8px; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.45); padding: 3px 8px; border-radius: 20px; z-index: 2; backdrop-filter: blur(4px); }
-    /* Caption — shows on hover */
-    .photo-caption { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 12px; opacity: 0; transition: opacity .2s; z-index: 1; }
+    .photo-caption { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%); display: flex; align-items: flex-end; padding: 12px; opacity: 0; transition: opacity .2s; z-index: 1; }
     .photo-cell:hover .photo-caption { opacity: 1; }
-    .photo-caption span { font-size: 11px; color: rgba(255,255,255,0.9); font-family: var(--serif); font-style: italic; line-height: 1.3; }
+    .photo-caption span { font-size: 11px; color: rgba(255,255,255,0.9); font-family: var(--serif); font-style: italic; }
     .photo-cta { text-align: center; padding: 20px 0 0; font-size: 13px; color: var(--muted); }
     .photo-cta a { color: var(--orange); border-bottom: 1px solid rgba(244,122,31,.3); transition: border-color .12s; }
     .photo-cta a:hover { border-color: var(--orange); }
@@ -166,19 +168,17 @@
     .theme-btn:hover { border-color: var(--orange); color: var(--orange); }
     .theme-btn svg { width: 15px; height: 15px; fill: currentColor; }
 
-    /* ════ MOBILE ════ */
+    /* Mobile */
     @media (max-width: 680px) {
       .wrap { padding: 0 20px; }
       .nav-outer { padding: 0 20px; }
       .nav-pages { display: none; }
       .hero { grid-template-columns: 1fr; gap: 28px; }
-      .hero-photo { order: -1; }
+      .hero-right { order: -1; }
       .hero-photo img { aspect-ratio: 4/5; }
       .hero-heading { font-size: 22px; }
-      .two-col { grid-template-columns: 1fr; gap: 40px; }
       .building-grid { grid-template-columns: 1fr; }
       .page-footer { flex-direction: column; align-items: flex-start; gap: 12px; padding: 32px 20px 48px; }
-      .footer-links { gap: 20px; }
     }
   </style>
 </head>
@@ -202,14 +202,17 @@
           <li><a href="/writing">writing</a></li>
           <li><a href="/photos">photos</a></li>
         </ul>
-        <a class="nav-work" href="/connect">the work side →</a>
+        <a class="nav-work" href="/connect">the work <span class="nav-work-orange">side →</span></a>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
   <div class="wrap">
+
+    <!-- HERO -->
     <section class="hero">
+
+      <!-- LEFT: content -->
       <div>
         <h1 class="hero-heading">
           Hi, I'm <span class="nb">Akshay</span> <span class="no">Sethi</span>,
@@ -229,7 +232,7 @@
           <li>8-bit era. Never really left.</li>
         </ul>
 
-        <!-- 3 Conversation starters -->
+        <!-- Conversation starters -->
         <div class="convos">
           <div class="convo-item">
             <div class="convo-dot"></div>
@@ -244,7 +247,7 @@
           <div class="convo-item">
             <span class="convo-emoji">♪</span>
             <span class="convo-label">Currently listening:</span>
-            <span class="convo-value" id="convo-song">—</span>
+            <a href="https://open.spotify.com/track/0ny1jaCM7x9NO9RqJBclms" target="_blank" rel="noreferrer" class="convo-value convo-spotify" id="convo-song">—</a>
           </div>
         </div>
 
@@ -272,9 +275,22 @@
         <p class="email-pref">Prefer writing an email — <a href="mailto:sethi.gram@gmail.com">sethi.gram@gmail.com</a></p>
       </div>
 
-      <div class="hero-photo">
-        <img src="akshay-hero.jpg" alt="Akshay Sethi" />
+      <!-- RIGHT: photo + quotes -->
+      <div class="hero-right">
+        <div class="hero-photo">
+          <img src="akshay-hero.jpg" alt="Akshay Sethi" />
+        </div>
+        <div>
+          <p class="slbl" style="margin-bottom:14px;">Quotes I live by</p>
+          <div class="quotes-list">
+            <div class="quote-item"><div class="qbar"></div><p class="qtext">"The bare minimum never changed anything."</p></div>
+            <div class="quote-item"><div class="qbar"></div><p class="qtext">"If oats can become milk, you can become anything."</p></div>
+            <div class="quote-item"><div class="qbar"></div><p class="qtext">"Stop planning, start breaking things."</p></div>
+            <div class="quote-item"><div class="qbar"></div><p class="qtext">"Your future is shaped by the habits you repeat, not the goals you set."</p></div>
+          </div>
+        </div>
       </div>
+
     </section>
 
     <!-- THINGS I'M BUILDING -->
@@ -299,90 +315,41 @@
       </div>
     </section>
 
-    <!-- WRITING + QUOTES -->
-    <div class="two-col">
-      <div>
-        <div class="sec-header">
-          <p class="sec-label" style="margin-bottom:0;">Writing</p>
-          <a href="/writing" class="sec-all">all writing →</a>
-        </div>
-        <ul class="writing-list">
-          <li class="writing-item">
-            <div class="writing-left">
-              <span class="wdate">24.08.26</span>
-              <a class="wtitle" href="/writing/the-art-of-slowing-down">The Art of Slowing Down</a>
-            </div>
-            <span class="wtag">Life</span>
-          </li>
-        </ul>
+    <!-- WRITING — full width -->
+    <section class="section">
+      <div class="sec-header">
+        <p class="sec-label" style="margin-bottom:0;">Writing</p>
+        <a href="/writing" class="sec-all">all writing →</a>
       </div>
-      <div>
-        <p class="sec-label">Quotes I live by</p>
-        <div class="quotes-list">
-          <div class="quote-item"><div class="qbar"></div><p class="qtext">"The bare minimum never changed anything."</p></div>
-          <div class="quote-item"><div class="qbar"></div><p class="qtext">"If oats can become milk, you can become anything."</p></div>
-          <div class="quote-item"><div class="qbar"></div><p class="qtext">"Stop planning, start breaking things."</p></div>
-          <div class="quote-item"><div class="qbar"></div><p class="qtext">"Your future is shaped by the habits you repeat, not the goals you set."</p></div>
-        </div>
-      </div>
-    </div>
+      <ul class="writing-list">
+        <li class="writing-item">
+          <div class="writing-left">
+            <span class="wdate">24.08.26</span>
+            <a class="wtitle" href="/writing/the-art-of-slowing-down">The Art of Slowing Down</a>
+          </div>
+          <span class="wtag">Life</span>
+        </li>
+      </ul>
+    </section>
 
     <!-- PHOTOS -->
     <section class="section" id="photos">
       <div class="sec-header">
         <p class="sec-label" style="margin-bottom:0;">Photos I took and love</p>
-        <a href="/photos" class="sec-all">see all photos →</a>
+        <a href="/photos" class="sec-all">see all →</a>
       </div>
       <div class="photo-grid">
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-flag.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Gurgaon, rooftop</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-plane.jpg" alt="Sunset from plane" loading="lazy" />
-          <div class="photo-caption"><span>35,000 ft</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-city.jpg" alt="City sunset" loading="lazy" />
-          <div class="photo-caption"><span>City at dusk</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-3.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Somewhere in between</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-4.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Golden hour</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-5.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Last light</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-6.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Painted sky</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-7.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Before dark</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
-        <a href="/photos" class="photo-cell">
-          <img src="photos/sunset-8.jpg" alt="Sunset" loading="lazy" />
-          <div class="photo-caption"><span>Day ends</span></div>
-          <div class="photo-tag">Sunset</div>
-        </a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-flag.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Gurgaon, rooftop</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-plane.jpg" alt="Sunset from plane" loading="lazy" /><div class="photo-caption"><span>35,000 ft</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-city.jpg" alt="City sunset" loading="lazy" /><div class="photo-caption"><span>City at dusk</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-3.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Somewhere in between</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-4.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Golden hour</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-5.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Last light</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-6.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Painted sky</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-7.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Before dark</span></div><div class="photo-tag">Sunset</div></a>
+        <a href="/photos" class="photo-cell"><img src="photos/sunset-8.jpg" alt="Sunset" loading="lazy" /><div class="photo-caption"><span>Day ends</span></div><div class="photo-tag">Sunset</div></a>
       </div>
-      <p class="photo-cta">
-        These never made it to Instagram. <a href="/photos">Explore the full collection →</a>
-      </p>
+      <p class="photo-cta">These never made it to Instagram. <a href="/photos">Explore the full collection →</a></p>
     </section>
 
     <!-- CREATIVE SIDE -->
@@ -405,10 +372,7 @@
         <div class="pl-icon">
           <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
         </div>
-        <div>
-          <p class="pl-name">My Playlist</p>
-          <p class="pl-meta">open.spotify.com</p>
-        </div>
+        <div><p class="pl-name">My Playlist</p><p class="pl-meta">open.spotify.com</p></div>
       </a>
     </section>
 
@@ -430,32 +394,23 @@
   </button>
 
   <script>
-    // Clock
     function tick() {
       var n = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
       var h = n.getHours(), m = String(n.getMinutes()).padStart(2, '0');
-      var ap = h >= 12 ? 'PM' : 'AM';
-      document.getElementById('clock').textContent = (h % 12 || 12) + ':' + m + ' ' + ap;
+      document.getElementById('clock').textContent = (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
     }
-    tick();
-    setInterval(tick, 60000);
+    tick(); setInterval(tick, 60000);
 
-    // Weather
     fetch('https://api.open-meteo.com/v1/forecast?latitude=28.4595&longitude=77.0266&current_weather=true')
       .then(function(r) { return r.json(); })
       .then(function(d) { document.getElementById('weather').textContent = '\u2601 ' + Math.round(d.current_weather.temperature) + '\u00b0C'; })
       .catch(function() {});
 
-    // Spotify oEmbed
     fetch('https://open.spotify.com/oembed?url=https://open.spotify.com/track/0ny1jaCM7x9NO9RqJBclms')
       .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var el = document.getElementById('convo-song');
-        el.textContent = d.title + (d.author_name ? ' \u2014 ' + d.author_name : '');
-      })
+      .then(function(d) { document.getElementById('convo-song').textContent = d.title + (d.author_name ? ' \u2014 ' + d.author_name : ''); })
       .catch(function() { document.getElementById('convo-song').textContent = 'Open in Spotify'; });
 
-    // Dark mode
     var dark = false;
     var btn = document.getElementById('theme-btn');
     var icon = document.getElementById('theme-icon');
