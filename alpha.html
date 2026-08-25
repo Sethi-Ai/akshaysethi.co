@@ -30,21 +30,14 @@
     .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px 80px; }
 
     /* ── Nav ── */
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0 20px; border-bottom: 1px solid var(--divider); gap: 16px; }
+    nav { padding: 28px 0 0; }
+    .nav-row1 { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; }
     .nav-name { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--text); letter-spacing: -0.3px; flex-shrink: 0; }
     .nav-name span { color: var(--orange); }
-    .nav-links { display: flex; gap: 24px; list-style: none; }
-    .nav-links a { font-size: 13px; color: var(--muted); transition: color .12s; }
-    .nav-links a:hover { color: var(--orange); }
-    .nav-right { font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .nav-sep { color: var(--divider); }
-    .nav-work { font-size: 12px; color: var(--faint); transition: color .12s; border-left: 1px solid var(--divider); padding-left: 10px; }
+    .nav-work { font-size: 13px; color: var(--muted); transition: color .12s; }
     .nav-work:hover { color: var(--orange); }
-
-    /* Dark mode toggle */
-    .theme-btn { background: none; border: 1px solid var(--divider); border-radius: 50%; width: 28px; height: 28px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--faint); transition: border-color .15s, color .15s; flex-shrink: 0; }
-    .theme-btn:hover { border-color: var(--orange); color: var(--orange); }
-    .theme-btn svg { width: 13px; height: 13px; fill: currentColor; }
+    .nav-row2 { padding: 8px 0 16px; border-bottom: 1px solid var(--divider); font-size: 12px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+    .nav-sep { color: var(--divider); }
 
     /* ── Hero ── */
     .hero { display: grid; grid-template-columns: 1fr 300px; gap: 52px; padding: 44px 0 52px; border-bottom: 1px solid var(--divider); }
@@ -149,15 +142,25 @@
     .playlist-item:hover .playlist-name { color: var(--orange); }
     .playlist-meta { font-size: 11px; color: var(--faint); }
 
+    /* Floating dark mode */
+    .theme-btn { position: fixed; bottom: 28px; right: 28px; width: 40px; height: 40px; border-radius: 50%; background: var(--card); border: 1px solid var(--divider); cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--faint); box-shadow: 0 2px 12px rgba(0,0,0,0.08); transition: border-color .15s, color .15s; z-index: 50; }
+    .theme-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .theme-btn svg { width: 15px; height: 15px; fill: currentColor; }
+
+    /* Footer */
+    .page-footer { padding: 32px 0 48px; border-top: 1px solid var(--divider); display: flex; gap: 24px; }
+    .page-footer a { font-size: 12px; color: var(--faint); transition: color .12s; }
+    .page-footer a:hover { color: var(--orange); }
+
     /* ── Mobile ── */
     @media (max-width: 680px) {
       .wrap { padding: 0 20px 60px; }
       .hero { grid-template-columns: 1fr; gap: 32px; }
       .hero-photo { order: -1; }
-      .hero-photo img { aspect-ratio: 3/2; }
+      .hero-photo img { aspect-ratio: 4/5; }
+      .hero-heading { font-size: 22px; }
       .two-col { grid-template-columns: 1fr; gap: 40px; }
       .building-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -166,20 +169,16 @@
 
   <!-- Nav -->
   <nav>
-    <a class="nav-name" href="/alpha">Akshay <span>Sethi</span></a>
-    <ul class="nav-links">
-      <li><a href="/writing">writing</a></li>
-      <li><a href="/alpha#photos">photos</a></li>
-    </ul>
-    <div class="nav-right">
+    <div class="nav-row1">
+      <a class="nav-name" href="/alpha">Akshay <span>Sethi</span></a>
+      <a class="nav-work" href="/connect">the work side →</a>
+    </div>
+    <div class="nav-row2">
       <span id="clock">—</span>
-      <span class="nav-sep">|</span>
+      <span class="nav-sep">·</span>
       <span>Gurgaon, IN</span>
+      <span class="nav-sep">·</span>
       <span id="weather">—</span>
-      <a href="/connect" class="nav-work">the work side →</a>
-      <button class="theme-btn" id="theme-btn" title="Toggle dark mode">
-        <svg id="theme-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
-      </button>
     </div>
   </nav>
 
@@ -236,15 +235,6 @@
             <p class="social-handle">@sethi.gram — life</p>
           </div>
         </a>
-        <a href="https://instagram.com/sethi.ai" target="_blank" rel="noreferrer" class="social-row">
-          <div class="social-icon-box" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
-            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-          </div>
-          <div class="social-text">
-            <p class="social-name">sethi.ai</p>
-            <p class="social-handle">@sethi.ai — AI &amp; building</p>
-          </div>
-        </a>
         <a href="https://threads.net/@sethi.gram" target="_blank" rel="noreferrer" class="social-row">
           <div class="social-icon-box" style="background:#000;">
             <svg viewBox="0 0 24 24"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.522-8.476C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.089.713 5.5 2.053 7.166 1.43 1.783 3.631 2.698 6.54 2.717 1.868-.015 3.44-.466 4.765-1.342.93-.61 1.773-1.545 2.44-3.04L21.358 18c-.752 1.784-1.785 3.108-3.12 4.012C16.554 23.399 14.488 24 12.186 24zm7.5-11.4h-7.7a.754.754 0 0 1-.755-.754V6.8c0-.415.338-.754.755-.754h.037c3.97.17 6.177 2.4 6.437 6.368a.753.753 0 0 1-.774.786zm-6.946-1.5h6.16c-.367-2.718-1.87-4.2-4.59-4.464v3.71a.754.754 0 0 1-.75.754h-.82z"/></svg>
@@ -252,6 +242,15 @@
           <div class="social-text">
             <p class="social-name">Threads</p>
             <p class="social-handle">@sethi.gram</p>
+          </div>
+        </a>
+        <a href="https://instagram.com/sethi.ai" target="_blank" rel="noreferrer" class="social-row">
+          <div class="social-icon-box" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+            <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4zm6.2-.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+          </div>
+          <div class="social-text">
+            <p class="social-name">sethi.ai</p>
+            <p class="social-handle">@sethi.ai — AI &amp; building</p>
           </div>
         </a>
       </div>
@@ -356,7 +355,16 @@
 
 </div>
 
-<script>
+<!-- Footer -->
+<footer class="page-footer" style="max-width:900px;margin:0 auto;padding-left:32px;padding-right:32px;">
+  <a href="/writing">writing</a>
+  <a href="/photos">photos</a>
+</footer>
+
+<!-- Floating dark mode -->
+<button class="theme-btn" id="theme-btn" title="Toggle dark mode">
+  <svg id="theme-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+</button>
   // Clock
   function tick(){const n=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));const h=n.getHours();const m=String(n.getMinutes()).padStart(2,'0');const ap=h>=12?'PM':'AM';document.getElementById('clock').textContent=`${h%12||12}:${m} ${ap}`;}
   tick();setInterval(tick,60000);
